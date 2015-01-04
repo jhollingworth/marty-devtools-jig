@@ -1,5 +1,5 @@
-var when = require('when');
 var Marty = require('marty');
+var delay = require('when/delay');
 var FooHttpAPI = require('../apis/fooHttpAPI');
 var FooConstants = require('../constants/fooConstants');
 var TestConstants = require('../constants/testConstants');
@@ -14,14 +14,14 @@ var TestActionCreators = Marty.createActionCreators({
   promiseThenDispatch: TestConstants.PROMISE_THEN_DISPATCH(function (foo, bar) {
     console.log('PROMISE_THEN_DISPATCH', arguments);
 
-    return when.resolve().then((function () {
+    return delay(2000).then((function () {
       this.dispatch.apply(this, arguments);
     }).bind(this));
   }),
   dispatchThenPromise: TestConstants.DISPATCH_THEN_PROMISE(function (foo, bar) {
     this.dispatch.apply(this, arguments);
 
-    return when.resolve({});
+    return delay(2000);
   }),
   fail: TestConstants.FAIL(function (foo, bar) {
     console.log('FAIL', arguments);
@@ -30,7 +30,9 @@ var TestActionCreators = Marty.createActionCreators({
   promiseFail: TestConstants.PROMISE_FAIL(function (foo, bar) {
     console.log('PROMISE_FAIL', arguments);
 
-    return when.reject(new Error('FAILED IN PROMISE'));
+    return delay(2000).then(function () {
+      throw new Error('FAILED IN PROMISE');
+    });
   }),
   noStores: TestConstants.NO_STORES(function (foo, bar) {
     console.log('NO_STORES', arguments);
