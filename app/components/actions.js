@@ -16,12 +16,12 @@ var Actions = React.createClass({
       <div className="actions">
         <Panel header="Create Local Action">
           <form>
-            <Input ref="actionType" type="select" label="Action Types" value={this.state.actionType}>
+            <Input ref="actionType" type="select" label="Action Types" onChange={this.changeActionType} value={this.state.actionType}>
               {this.state.actionTypes.map(function (type) {
                 return <option value={type}>{type}</option>;
               })}
             </Input>
-            <Input ref="arguments" type="text" label="Arguments" onChange={this.updateArguments} value={this.state.args}/>
+            <Input ref="arguments" type="text" label="Arguments" onChange={this.changeArguments} value={this.state.args}/>
             <ButtonToolbar className="pull-right">
               <Button onClick={this.createRandomAction}>Create random action</Button>
               <Button bsStyle="primary" onClick={this.createAction}>Create action</Button>
@@ -31,7 +31,12 @@ var Actions = React.createClass({
       </div>
     );
   },
-  updateArguments: function () {
+  changeActionType: function (e) {
+    this.setState({
+      actionType: this.refs.actionType.getValue()
+    });
+  },
+  changeArguments: function () {
     this.setState({
       args: this.refs.arguments.getValue()
     });
