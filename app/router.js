@@ -5,7 +5,7 @@ var Router = require('react-router');
 var Route = Router.Route;
 
 var routes = [
-  <Route name="home" path="/" handler={require('./components/home')} />
+  <Route name="actions" path="/" handler={require('./components/actions')} />
 ];
 
 module.exports = Router.create({

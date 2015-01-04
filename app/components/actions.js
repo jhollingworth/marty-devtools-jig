@@ -10,11 +10,11 @@ var TestConstants = require('../constants/testConstants');
 var ButtonToolbar = require('react-bootstrap/ButtonToolbar');
 var TestActionCreators = require('../actions/testActionCreators');
 
-var Home = React.createClass({
+var Actions = React.createClass({
   render: function () {
     return (
-      <div className="home">
-        <Panel header="Create Action">
+      <div className="actions">
+        <Panel header="Create Local Action">
           <form>
             <Input ref="actionType" type="select" label="Action Types" value={this.state.actionType}>
               {this.state.actionTypes.map(function (type) {
@@ -41,7 +41,8 @@ var Home = React.createClass({
     var randomType = types[Math.floor(Math.random()*types.length)];
 
     this.setState({ actionType: randomType });
-    this.createAction();
+
+    setTimeout(this.createAction, 10);
   },
   createAction: function () {
     var constant = this.refs.actionType.getValue();
@@ -72,4 +73,4 @@ var Home = React.createClass({
   }
 });
 
-module.exports = Home;
+module.exports = Actions;

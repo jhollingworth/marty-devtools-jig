@@ -2,7 +2,6 @@ var Marty = require('marty');
 
 var TestConstants = Marty.createConstants([
   'NO_DISPATCH',
-  'DISPATCH',
   'PROMISE_THEN_DISPATCH',
   'DISPATCH_THEN_PROMISE',
   'FAIL',

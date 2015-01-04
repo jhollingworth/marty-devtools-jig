@@ -1,3 +1,4 @@
+var when = require('when');
 var Marty = require('marty');
 var FooHttpAPI = require('../apis/fooHttpAPI');
 var FooConstants = require('../constants/fooConstants');
@@ -10,41 +11,54 @@ var TestActionCreators = Marty.createActionCreators({
   noDispatch: TestConstants.NO_DISPATCH(function (foo, bar) {
     console.log('NO_DISPATCH', arguments);
   }),
-  dispatch: TestConstants.DISPATCH(function (foo, bar) {
-    console.log('DISPATCH', arguments);
-  }),
   promiseThenDispatch: TestConstants.PROMISE_THEN_DISPATCH(function (foo, bar) {
     console.log('PROMISE_THEN_DISPATCH', arguments);
+
+    return when.resolve().then((function () {
+      this.dispatch.apply(this, arguments);
+    }).bind(this));
   }),
   dispatchThenPromise: TestConstants.DISPATCH_THEN_PROMISE(function (foo, bar) {
-    console.log('DISPATCH_THEN_PROMISE', arguments);
+    this.dispatch.apply(this, arguments);
+
+    return when.resolve({});
   }),
   fail: TestConstants.FAIL(function (foo, bar) {
     console.log('FAIL', arguments);
+    throw new Error('FAILED IN ACTION CREATOR');
   }),
   promiseFail: TestConstants.PROMISE_FAIL(function (foo, bar) {
     console.log('PROMISE_FAIL', arguments);
+
+    return when.reject(new Error('FAILED IN PROMISE'));
   }),
   noStores: TestConstants.NO_STORES(function (foo, bar) {
     console.log('NO_STORES', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   oneStore: TestConstants.ONE_STORE(function (foo, bar) {
     console.log('ONE_STORE', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   multipleStores: TestConstants.MULTIPLE_STORES(function (foo, bar) {
     console.log('MULTIPLE_STORES', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   singleComponent: TestConstants.SINGLE_COMPONENT(function (foo, bar) {
     console.log('SINGLE_COMPONENT', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   multipleComponents: TestConstants.MULTIPLE_COMPONENTS(function (foo, bar) {
     console.log('MULTIPLE_COMPONENTS', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   failInActionHandler: TestConstants.FAIL_IN_ACTION_HANDLER(function (foo, bar) {
     console.log('FAIL_IN_ACTION_HANDLER', arguments);
+    this.dispatch.apply(this, arguments);
   }),
   failInComponent: TestConstants.FAIL_IN_COMPONENT(function (foo, bar) {
     console.log('FAIL_IN_COMPONENT', arguments);
+    this.dispatch.apply(this, arguments);
   })
 });
 
