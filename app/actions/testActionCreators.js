@@ -1,3 +1,4 @@
+var DELAY = 2000;
 var Marty = require('marty');
 var delay = require('when/delay');
 var FooHttpAPI = require('../apis/fooHttpAPI');
@@ -14,14 +15,14 @@ var TestActionCreators = Marty.createActionCreators({
   promiseThenDispatch: TestConstants.PROMISE_THEN_DISPATCH(function (foo, bar) {
     console.log('PROMISE_THEN_DISPATCH', arguments);
 
-    return delay(2000).then((function () {
+    return delay(DELAY).then((function () {
       this.dispatch.apply(this, arguments);
     }).bind(this));
   }),
   dispatchThenPromise: TestConstants.DISPATCH_THEN_PROMISE(function (foo, bar) {
     this.dispatch.apply(this, arguments);
 
-    return delay(2000);
+    return delay(DELAY);
   }),
   fail: TestConstants.FAIL(function (foo, bar) {
     console.log('FAIL', arguments);
@@ -30,7 +31,7 @@ var TestActionCreators = Marty.createActionCreators({
   promiseFail: TestConstants.PROMISE_FAIL(function (foo, bar) {
     console.log('PROMISE_FAIL', arguments);
 
-    return delay(2000).then(function () {
+    return delay(DELAY).then(function () {
       throw new Error('FAILED IN PROMISE');
     });
   }),

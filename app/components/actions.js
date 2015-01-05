@@ -3,6 +3,7 @@
 var React = require('react');
 var _ = require('underscore');
 var str = require('underscore.string');
+var MultiTest = require('./multiTest');
 var Input = require('react-bootstrap/Input');
 var Panel = require('react-bootstrap/Panel');
 var Button = require('react-bootstrap/Button');
@@ -28,6 +29,8 @@ var Actions = React.createClass({
             </ButtonToolbar>
           </form>
         </Panel>
+
+        <MultiTest />
       </div>
     );
   },

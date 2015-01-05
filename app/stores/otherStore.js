@@ -7,6 +7,11 @@ var OtherStore = Marty.createStore({
   getInitialState: function () {
     return [];
   },
+  getById: function (id) {
+    return _.find(this.state, {
+      id: id
+    });
+  },
   handlers: {
     multipleStores: TestConstants.MULTIPLE_STORES,
     multipleComponents: TestConstants.MULTIPLE_COMPONENTS,
