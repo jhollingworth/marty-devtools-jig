@@ -1,7 +1,8 @@
 var Marty = require('marty');
-var FooServerActionCreators = require('../actions/fooServerActionCreators');
+var FooSourceActionCreators = require('../actions/fooSourceActionCreators');
 
-var FooHttpAPI = Marty.createHttpAPI({
+var FooHttpAPI = Marty.createStateSource({
+  type: "http",
   getById: function (id) {
     return this.get('/api/foos/' + id).then(function (foo) {
       return FooServerActionCreators.addFoo(foo);

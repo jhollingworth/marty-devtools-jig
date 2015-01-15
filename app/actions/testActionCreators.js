@@ -1,7 +1,7 @@
 var DELAY = 2000;
 var Marty = require('marty');
 var delay = require('when/delay');
-var FooHttpAPI = require('../apis/fooHttpAPI');
+var FooHttpAPI = require('../sources/fooHttpAPI');
 var FooConstants = require('../constants/fooConstants');
 var TestConstants = require('../constants/testConstants');
 

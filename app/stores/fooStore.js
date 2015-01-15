@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var Marty = require('marty');
-var FooHttpAPI = require('../apis/fooHttpApi');
+var FooHttpAPI = require('../sources/fooHttpApi');
 var FooConstants = require('../constants/fooConstants');
 
 var FooStore = Marty.createStore({
