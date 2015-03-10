@@ -1,15 +1,16 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var _ = require('underscore');
-var str = require('underscore.string');
+var _ = require('lodash');
 var MultiTest = require('./multiTest');
-var Input = require('react-bootstrap/Input');
-var Panel = require('react-bootstrap/Panel');
-var Button = require('react-bootstrap/Button');
+var Bootstrap = require('react-bootstrap');
 var TestConstants = require('../constants/testConstants');
-var ButtonToolbar = require('react-bootstrap/ButtonToolbar');
 var TestActionCreators = require('../actions/testActionCreators');
+
+var Input = Bootstrap.Input;
+var Panel = Bootstrap.Panel;
+var Button = Bootstrap.Button;
+var ButtonToolbar = Bootstrap.ButtonToolbar;
 
 var Actions = React.createClass({
   render: function () {
@@ -54,7 +55,7 @@ var Actions = React.createClass({
   },
   createAction: function () {
     var constant = this.refs.actionType.getValue();
-    var actionType = str.camelize(constant.toLowerCase());
+    var actionType = _.camelCase(constant.toLowerCase());
     var arguments = eval('[' + this.refs.arguments.getValue() + ']');
     var actionCreator = TestActionCreators[actionType];
 
@@ -74,9 +75,25 @@ var Actions = React.createClass({
     };
 
     function actionTypes() {
-      return _.values(TestConstants).map(function (constants) {
+      return _.values(TestConstants).filter(generatedConstants).map(function (constants) {
         return constants.type;
       });
+
+      function generatedConstants(constant) {
+        if (_.endsWith(constant.type, '_STARTING')) {
+          return false;
+        }
+
+        if (_.endsWith(constant.type, '_DONE')) {
+          return false;
+        }
+
+        if (_.endsWith(constant.type, '_FAILED')) {
+          return false;
+        }
+
+        return true;
+      }
     }
   }
 });

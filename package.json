@@ -1,14 +1,13 @@
 {
   "name": "marty-devtools-jig",
-  "version": "0.0.0",
+  "version": "0.9.0",
   "private": true,
   "dependencies": {
-    "lodash": "2.4.1",
-    "marty": "0.7.x",
-    "react": "^0.12.1",
-    "react-router": "^0.11.4",
-    "underscore.string": "^2.4.0",
-    "when": "^3.6.4"
+    "lodash": "^3.0.0",
+    "marty": "0.9.x",
+    "react": "0.13.x",
+    "react-bootstrap": "^0.16.1",
+    "react-router": "git://github.com/rackt/react-router#0.13-compat"
   },
   "scripts": {
     "start": "grunt",
@@ -39,8 +38,6 @@
     "load-grunt-tasks": "1.0.0",
     "mocha": "^2.0.1",
     "morgan": "~1.5.0",
-    "react-bootstrap": "^0.13.0",
-    "react-page-objects": "^0.1.2",
     "reactify": "^0.17.1",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0"

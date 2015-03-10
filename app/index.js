@@ -7,7 +7,6 @@ var Router = require('./router');
 window.React = React; // For React DevTools
 window.Marty = Marty; // For Marty Developer Tools
 
-require('./stores/fooStore');
 require('./stores/testStore');
 require('./stores/otherStore');
 

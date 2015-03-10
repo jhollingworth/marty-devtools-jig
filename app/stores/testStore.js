@@ -1,9 +1,9 @@
 var Marty = require('marty');
-var _ = require('underscore');
+var _ = require('lodash');
 var TestConstants = require('../constants/testConstants');
 
 var TestStore = Marty.createStore({
-  displayName: 'Test',
+  id: 'TestStore',
   getInitialState: function () {
     return [];
   },
@@ -11,22 +11,12 @@ var TestStore = Marty.createStore({
     oneStore: TestConstants.ONE_STORE,
     multipleStores: TestConstants.MULTIPLE_STORES,
     singleComponent: TestConstants.SINGLE_COMPONENT,
-    failInComponent: TestConstants.FAIL_IN_COMPONENT,
-    multipleComponents: TestConstants.MULTIPLE_COMPONENTS,
-    promiseThenDispatch: TestConstants.PROMISE_THEN_DISPATCH,
-    dispatchThenPromise: TestConstants.DISPATCH_THEN_PROMISE,
-    failInActionHandler: TestConstants.FAIL_IN_ACTION_HANDLER
+    multipleComponents: TestConstants.MULTIPLE_COMPONENTS
   },
   oneStore: addData,
   multipleStores: addData,
   singleComponent: addData,
-  failInComponent: addData,
-  multipleComponents: addData,
-  promiseThenDispatch: addData,
-  dispatchThenPromise: addData,
-  failInActionHandler: function (arguments) {
-    throw new Error('FAILED IN ACTION HANDLER')
-  }
+  multipleComponents: addData
 })
 
 function addData() {
