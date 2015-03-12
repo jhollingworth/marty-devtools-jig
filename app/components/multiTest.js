@@ -5,9 +5,10 @@ var Marty = require('marty');
 var Other = require('./other');
 var TestStore = require('../stores/testStore');
 var OtherStore = require('../stores/otherStore');
+var ImmutableStore = require('../stores/immutableStore');
 
 var MultiTestStateMixin = Marty.createStateMixin({
-  listenTo: [TestStore, OtherStore],
+  listenTo: [TestStore, OtherStore, ImmutableStore],
   getState: function () {
     return {
       tests: TestStore.getState(),

@@ -7,7 +7,10 @@ var OtherStore = require('../stores/otherStore');
 var OtherStateMixin = Marty.createStateMixin({
   listenTo: [OtherStore],
   getState: function () {
-    return OtherStore.getById(this.props.id)
+    return {
+      other: OtherStore.getById(this.props.id),
+      immutable: ImmutableStore.getById(this.props.id)
+    };
   }
 });
 

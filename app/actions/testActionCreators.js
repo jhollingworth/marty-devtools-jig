@@ -1,6 +1,7 @@
 var DELAY = 2000;
 var _ = require('lodash');
 var Marty = require('marty');
+var Immutable = require('immutable');
 var TestConstants = require('../constants/testConstants');
 
 var TestActionCreators = Marty.createActionCreators({
@@ -28,8 +29,25 @@ var TestActionCreators = Marty.createActionCreators({
   multipleComponents: function () {
     console.log('MULTIPLE_COMPONENTS', arguments);
     this.dispatch.apply(this, argumentsWithType(TestConstants.MULTIPLE_COMPONENTS, arguments));
+  },
+  immutable: function () {
+    var obj = {};
+
+    obj.id = uuid();
+    obj.name = 'FOO';
+
+    this.dispatch(TestConstants.IMMUTABLE, Immutable.fromJS(obj));
   }
 });
+
+function uuid() {
+  return s4() + s4() + s4() + s4();
+}
+
+
+function s4() {
+  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+}
 
 function argumentsWithType(type, args) {
   args = _.toArray(args);
