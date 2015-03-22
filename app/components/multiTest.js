@@ -21,7 +21,7 @@ var MultiTest = React.createClass({
   mixins: [MultiTestStateMixin],
   render: function () {
     return (
-      <div className='multi-test' style={{display: 'none'}}>
+      <div className='multi-test'>
         <div className='tests'>
           {this.state.tests.map(function (test) {
             return <div className='test' key={test.id}>{test.id}</div>;
