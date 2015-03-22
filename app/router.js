@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Router = require('react-router/build/npm');
+var Router = require('react-router');
 var Route = Router.Route;
 
 var routes = [
