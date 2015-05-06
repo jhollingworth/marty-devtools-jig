@@ -1,15 +1,11 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var Marty = require('marty');
-var OtherStore = require('../stores/otherStore');
-var ImmutableStore = require('../stores/immutableStore');
 
 var OtherStateMixin = Marty.createStateMixin({
-  listenTo: [OtherStore],
+  listenTo: 'otherStore',
   getState: function () {
     return {
-      other: OtherStore.getById(this.props.id)
+      other: this.app.otherStore.getById(this.props.id)
     };
   }
 });

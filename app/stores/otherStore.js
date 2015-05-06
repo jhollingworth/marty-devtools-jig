@@ -3,7 +3,6 @@ var _ = require('lodash');
 var TestConstants = require('../constants/testConstants');
 
 var OtherStore = Marty.createStore({
-  id: 'OtherStore',
   getInitialState: function () {
     return [];
   },

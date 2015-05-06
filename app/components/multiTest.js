@@ -1,18 +1,13 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var Marty = require('marty');
 var Other = require('./other');
-var TestStore = require('../stores/testStore');
-var OtherStore = require('../stores/otherStore');
-var ImmutableStore = require('../stores/immutableStore');
 
 var MultiTestStateMixin = Marty.createStateMixin({
-  listenTo: [TestStore, OtherStore, ImmutableStore],
+  listenTo: ['testStore', 'otherStore'],
   getState: function () {
     return {
-      tests: TestStore.getState(),
-      others: OtherStore.getState()
+      tests: this.app.testStore.getState(),
+      others: this.app.otherStore.getState()
     };
   }
 });

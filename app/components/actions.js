@@ -1,11 +1,9 @@
-/** @jsx React.DOM */
-
-var React = require('react');
 var _ = require('lodash');
+var Marty = require('marty');
+var React = require('react');
 var MultiTest = require('./multiTest');
 var Bootstrap = require('react-bootstrap');
 var TestConstants = require('../constants/testConstants');
-var TestActionCreators = require('../actions/testActionCreators');
 
 var Input = Bootstrap.Input;
 var Panel = Bootstrap.Panel;
@@ -13,6 +11,7 @@ var Button = Bootstrap.Button;
 var ButtonToolbar = Bootstrap.ButtonToolbar;
 
 var Actions = React.createClass({
+  contextTypes: Marty.contextTypes,
   render: function () {
     return (
       <div className="actions">
@@ -56,11 +55,11 @@ var Actions = React.createClass({
   createAction: function () {
     var constant = this.refs.actionType.getValue();
     var actionType = _.camelCase(constant.toLowerCase());
-    var arguments = eval('[' + this.refs.arguments.getValue() + ']');
-    var actionCreator = TestActionCreators[actionType];
+    var args = eval('[' + this.refs.arguments.getValue() + ']');
+    var actionCreator = this.context.app.testActionCreators[actionType];
 
     if (actionCreator) {
-      actionCreator.apply(TestActionCreators, arguments);
+      actionCreator.apply(this.context.app.testActionCreators, args);
     } else {
       console.log('Could not find action creator for ' + constant + ' (' + actionType + ')');
     }
@@ -75,8 +74,8 @@ var Actions = React.createClass({
     };
 
     function actionTypes() {
-      return _.values(TestConstants).filter(generatedConstants).map(function (constants) {
-        return constants.type;
+      return _.values(TestConstants).filter(generatedConstants).map(function (constant) {
+        return constant;
       });
 
       function generatedConstants(constant) {

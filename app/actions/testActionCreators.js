@@ -5,7 +5,6 @@ var Immutable = require('immutable');
 var TestConstants = require('../constants/testConstants');
 
 var TestActionCreators = Marty.createActionCreators({
-  id: 'TestActionCreators',
   simple: function () {
     console.log('SIMPLE', arguments);
     this.dispatch.apply(this, argumentsWithType(TestConstants.SIMPLE, arguments));

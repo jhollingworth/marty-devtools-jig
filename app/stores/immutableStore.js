@@ -4,7 +4,6 @@ var Immutable = require('immutable');
 var TestConstants = require('../constants/testConstants');
 
 var ImmutableStore = Marty.createStore({
-  id: 'ImmutableStore',
   handlers: {
     addImmutable: TestConstants.IMMUTABLE
   },
